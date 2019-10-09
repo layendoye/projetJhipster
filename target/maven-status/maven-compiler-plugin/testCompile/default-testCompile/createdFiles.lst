@@ -1,7 +1,9 @@
 com/projet/jhipster/security/SecurityUtilsUnitTest.class
 com/projet/jhipster/web/rest/ClientForwardControllerIT$TestController.class
 com/projet/jhipster/repository/CustomAuditEventRepositoryIT.class
+com/projet/jhipster/web/rest/TransactionResourceIT.class
 com/projet/jhipster/web/rest/AccountResourceIT.class
+com/projet/jhipster/web/rest/ClientResourceIT.class
 com/projet/jhipster/repository/timezone/DateTimeWrapperRepository.class
 com/projet/jhipster/config/timezone/HibernateTimeZoneIT.class
 com/projet/jhipster/web/rest/UserJWTControllerIT.class

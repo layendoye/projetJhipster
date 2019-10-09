@@ -1,4 +1,5 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/package-info.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/ClientRepository.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/vm/package-info.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/ApplicationProperties.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/package-info.java
@@ -9,13 +10,16 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/SecurityConfiguration.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/Constants.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/ClientForwardController.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/ClientResource.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/jwt/TokenProvider.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/audit/package-info.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/PersistenceAuditEventRepository.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/AuthoritiesConstants.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/AuditResource.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/UsernameAlreadyUsedException.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/domain/Transaction.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/WebConfigurer.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/domain/Client.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/util/RandomUtil.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/LiquibaseConfiguration.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/domain/package-info.java
@@ -26,6 +30,7 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/CustomAuditEventRepository.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/DefaultProfileUtil.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/vm/LoginVM.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/TransactionResource.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/AuditEventService.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/domain/User.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/CloudDatabaseConfiguration.java
@@ -33,6 +38,8 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/LocaleConfiguration.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/package-info.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/SecurityUtils.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/TransactionService.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/TransactionRepository.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/errors/package-info.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/ApplicationWebXml.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/MailService.java
@@ -62,6 +69,7 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/vm/KeyAndPasswordVM.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/SpringSecurityAuditorAware.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/package-info.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/service/ClientService.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/jwt/JWTConfigurer.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/DatabaseConfiguration.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/repository/UserRepository.java

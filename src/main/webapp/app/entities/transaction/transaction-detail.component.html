@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="projetApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="projetApp.transaction.dateEnvois">Date Envois</span></dt>
+                <dd>
+                    <span>{{transaction.dateEnvois}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.montant">Montant</span></dt>
+                <dd>
+                    <span>{{transaction.montant}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.dateRetrait">Date Retrait</span></dt>
+                <dd>
+                    <span>{{transaction.dateRetrait}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.frais">Frais</span></dt>
+                <dd>
+                    <span>{{transaction.frais}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.commSysteme">Comm Systeme</span></dt>
+                <dd>
+                    <span>{{transaction.commSysteme}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.commExp">Comm Exp</span></dt>
+                <dd>
+                    <span>{{transaction.commExp}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.commRetireur">Comm Retireur</span></dt>
+                <dd>
+                    <span>{{transaction.commRetireur}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.taxe">Taxe</span></dt>
+                <dd>
+                    <span>{{transaction.taxe}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.status">Status</span></dt>
+                <dd>
+                    <span>{{transaction.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.code">Code</span></dt>
+                <dd>
+                    <span>{{transaction.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.idExp">Id Exp</span></dt>
+                <dd>
+                    <div *ngIf="transaction.idExp">
+                        <a [routerLink]="['/client', transaction.idExp?.id, 'view']">{{transaction.idExp?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.idDest">Id Dest</span></dt>
+                <dd>
+                    <div *ngIf="transaction.idDest">
+                        <a [routerLink]="['/client', transaction.idDest?.id, 'view']">{{transaction.idDest?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.idUserExp">Id User Exp</span></dt>
+                <dd>
+                    {{transaction.idUserExp?.login}}
+                </dd>
+                <dt><span jhiTranslate="projetApp.transaction.idUserRetir">Id User Retir</span></dt>
+                <dd>
+                    {{transaction.idUserRetir?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
