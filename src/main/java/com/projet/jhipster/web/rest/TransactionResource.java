@@ -1,7 +1,10 @@
 package com.projet.jhipster.web.rest;
 
+import com.projet.jhipster.domain.RetraitForm;
 import com.projet.jhipster.domain.Transaction;
+import com.projet.jhipster.domain.User;
 import com.projet.jhipster.service.TransactionService;
+import com.projet.jhipster.service.UserService;
 import com.projet.jhipster.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,6 +12,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +25,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +38,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class TransactionResource {
+    @Autowired
+    UserService userService;
 
     private final Logger log = LoggerFactory.getLogger(TransactionResource.class);
 
@@ -57,6 +67,20 @@ public class TransactionResource {
         if (transaction.getId() != null) {
             throw new BadRequestAlertException("A new transaction cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        User userExp=userService.getUserWithAuthorities().get();//user connecte
+        transaction.setIdUserExp(userExp);
+        long frais=(long) (transaction.getMontant()*0.1);
+        long unSurCinq=(long) (frais*0.2);
+        long commSys=(long) (frais*0.4);
+        transaction.setCommExp(unSurCinq);
+        transaction.setCommSysteme(commSys);
+        transaction.setTaxe(unSurCinq);
+        transaction.setDateEnvois(LocalDate.now());
+        transaction.setFrais(frais);
+        transaction.setStatus("Envoyer");
+        SimpleDateFormat format = new SimpleDateFormat("ssmm ddhh yyMM");
+        String code=format.format(new Date());
+        transaction.setCode(code);
         Transaction result = transactionService.save(transaction);
         return ResponseEntity.created(new URI("/api/transactions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -78,6 +102,28 @@ public class TransactionResource {
         if (transaction.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        Transaction result = transactionService.save(transaction);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, transaction.getId().toString()))
+            .body(result);
+    }
+
+    @PostMapping("/retrait")
+    public ResponseEntity<Transaction> retraitTrans(@RequestBody RetraitForm retrait) throws Exception {
+        Transaction transaction=transactionService.findTransactionByCode(retrait.getCode()).orElseThrow(
+            ()->new Exception("Ce code n'existe pas !!")
+        );
+        if(!transaction.getIdDest().getNci().equals(retrait.getNciRecp())){
+            throw new Exception("Impossible car ce numéro de carte d'identité ne correspond pas à celui du récepteur "+retrait.getNciRecp()+" di "+transaction.getIdDest().getNci());
+        }
+        if(transaction.getStatus().equals("Retirer")){
+            throw new Exception("Impossible code déja retiré !!");
+        }
+        transaction.setStatus("Retirer");
+        transaction.setCommRetireur(transaction.getCommExp());//les 2 prennent 1/5 toute façon
+        transaction.dateRetrait(LocalDate.now());
+        User userRecp=userService.getUserWithAuthorities().get();//user connecte
+        transaction.setIdUserRetir(userRecp);
         Transaction result = transactionService.save(transaction);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, transaction.getId().toString()))

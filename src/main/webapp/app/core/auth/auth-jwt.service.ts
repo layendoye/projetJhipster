@@ -9,6 +9,7 @@ import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
+  usernameUserC: string;
   constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService) {}
 
   getToken() {
@@ -16,6 +17,7 @@ export class AuthServerProvider {
   }
 
   login(credentials): Observable<any> {
+    this.usernameUserC = credentials.username;
     const data = {
       username: credentials.username,
       password: credentials.password,

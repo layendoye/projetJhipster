@@ -290,4 +290,5 @@ public class Transaction implements Serializable {
             ", code='" + getCode() + "'" +
             "}";
     }
+
 }

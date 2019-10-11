@@ -3,6 +3,7 @@
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/vm/package-info.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/ApplicationProperties.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/security/package-info.java
+/home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/domain/RetraitForm.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/UserJWTController.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/web/rest/UserResource.java
 /home/abdoulaye/Bureau/Projet JHipster/src/main/java/com/projet/jhipster/config/CacheConfiguration.java

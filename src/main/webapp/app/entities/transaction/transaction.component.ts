@@ -30,6 +30,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+  idUserConnecte: any = 3;
 
   constructor(
     protected transactionService: TransactionService,

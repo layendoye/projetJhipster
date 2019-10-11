@@ -72,4 +72,7 @@ public class TransactionService {
         log.debug("Request to delete Transaction : {}", id);
         transactionRepository.deleteById(id);
     }
+    public Optional<Transaction> findTransactionByCode(String code){
+        return transactionRepository.findTransactionByCode(code);
+    }
 }

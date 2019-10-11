@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Spring Data  repository for the Transaction entity.
@@ -17,5 +18,12 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     @Query("select transaction from Transaction transaction where transaction.idUserRetir.login = ?#{principal.username}")
     List<Transaction> findByIdUserRetirIsCurrentUser();
+
+    @Query("select transaction from Transaction transaction where transaction.idUserRetir.login = ?#{principal.username} OR transaction.idUserExp.login = ?#{principal.username}")
+    List<Transaction> findMesTransaction();
+
+    Optional<Transaction> findTransactionByCode(String code);
+
+
 
 }

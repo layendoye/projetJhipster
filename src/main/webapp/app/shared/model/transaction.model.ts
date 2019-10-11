@@ -18,6 +18,7 @@ export interface ITransaction {
   idDest?: IClient;
   idUserExp?: IUser;
   idUserRetir?: IUser;
+  nciRecp?: string;
 }
 
 export class Transaction implements ITransaction {
@@ -36,6 +37,7 @@ export class Transaction implements ITransaction {
     public idExp?: IClient,
     public idDest?: IClient,
     public idUserExp?: IUser,
-    public idUserRetir?: IUser
+    public idUserRetir?: IUser,
+    public nciRecp?: string
   ) {}
 }

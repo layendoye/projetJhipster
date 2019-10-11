@@ -16,6 +16,7 @@ type EntityArrayResponseType = HttpResponse<ITransaction[]>;
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
   public resourceUrl = SERVER_API_URL + 'api/transactions';
+  public retraitUrl = SERVER_API_URL + 'api/retrait';
 
   constructor(protected http: HttpClient) {}
 
@@ -23,6 +24,13 @@ export class TransactionService {
     const copy = this.convertDateFromClient(transaction);
     return this.http
       .post<ITransaction>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  retrait(transaction: ITransaction): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(transaction);
+    return this.http
+      .post<ITransaction>(this.retraitUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

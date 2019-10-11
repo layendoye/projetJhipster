@@ -30,20 +30,11 @@ export class TransactionUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    dateEnvois: [],
     montant: [],
-    dateRetrait: [],
-    frais: [],
-    commSysteme: [],
-    commExp: [],
-    commRetireur: [],
-    taxe: [],
-    status: [],
     code: [],
     idExp: [],
     idDest: [],
-    idUserExp: [],
-    idUserRetir: []
+    nciRecp: []
   });
 
   constructor(
@@ -79,20 +70,11 @@ export class TransactionUpdateComponent implements OnInit {
   updateForm(transaction: ITransaction) {
     this.editForm.patchValue({
       id: transaction.id,
-      dateEnvois: transaction.dateEnvois,
       montant: transaction.montant,
-      dateRetrait: transaction.dateRetrait,
-      frais: transaction.frais,
-      commSysteme: transaction.commSysteme,
-      commExp: transaction.commExp,
-      commRetireur: transaction.commRetireur,
-      taxe: transaction.taxe,
-      status: transaction.status,
       code: transaction.code,
       idExp: transaction.idExp,
       idDest: transaction.idDest,
-      idUserExp: transaction.idUserExp,
-      idUserRetir: transaction.idUserRetir
+      nciRecp: transaction.nciRecp
     });
   }
 
@@ -103,10 +85,13 @@ export class TransactionUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const transaction = this.createFromForm();
+
     if (transaction.id !== undefined) {
       this.subscribeToSaveResponse(this.transactionService.update(transaction));
-    } else {
+    } else if (this.envois) {
       this.subscribeToSaveResponse(this.transactionService.create(transaction));
+    } else {
+      this.subscribeToSaveResponse(this.transactionService.retrait(transaction));
     }
   }
 
@@ -114,20 +99,11 @@ export class TransactionUpdateComponent implements OnInit {
     return {
       ...new Transaction(),
       id: this.editForm.get(['id']).value,
-      dateEnvois: this.editForm.get(['dateEnvois']).value,
       montant: this.editForm.get(['montant']).value,
-      dateRetrait: this.editForm.get(['dateRetrait']).value,
-      frais: this.editForm.get(['frais']).value,
-      commSysteme: this.editForm.get(['commSysteme']).value,
-      commExp: this.editForm.get(['commExp']).value,
-      commRetireur: this.editForm.get(['commRetireur']).value,
-      taxe: this.editForm.get(['taxe']).value,
-      status: this.editForm.get(['status']).value,
       code: this.editForm.get(['code']).value,
       idExp: this.editForm.get(['idExp']).value,
       idDest: this.editForm.get(['idDest']).value,
-      idUserExp: this.editForm.get(['idUserExp']).value,
-      idUserRetir: this.editForm.get(['idUserRetir']).value
+      nciRecp: this.editForm.get(['nciRecp']).value
     };
   }
 
@@ -154,6 +130,7 @@ export class TransactionUpdateComponent implements OnInit {
   trackUserById(index: number, item: IUser) {
     return item.id;
   }
+
   unEnvois() {
     if (this.envois) this.envois = false;
     else this.envois = true;

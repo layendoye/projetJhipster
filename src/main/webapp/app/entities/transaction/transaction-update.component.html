@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div>
-            <button type="button"  class="btn btn-primary" [disabled]="envois" (click)="unEnvois()">
+        <div class="form-group">
+            <button type="button"  [ngClass]="{'btn':true, 'btn-primary': envois==false,'btn-danger': envois==true}" [disabled]="envois" (click)="unEnvois()">
                 <span>Envois</span>
             </button>
-            <button type="submit" [disabled]="!envois" class="btn btn-info" (click)="unEnvois()">
+            <button type="submit" [disabled]="!envois" [ngClass]="{'btn':true, 'btn-info': envois==true,'btn-danger': envois==false}" (click)="unEnvois()">
                 &nbsp;<span>Retrait</span>
             </button>
         </div>
@@ -15,58 +15,14 @@
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.dateEnvois" for="field_dateEnvois">Date Envois</label>
-                    <div class="input-group">
-                        <input id="field_dateEnvois" type="text" class="form-control" name="dateEnvois" ngbDatepicker  #dateEnvoisDp="ngbDatepicker" formControlName="dateEnvois"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dateEnvoisDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.dateRetrait" for="field_dateRetrait">Date Retrait</label>
-                    <div class="input-group">
-                        <input id="field_dateRetrait" type="text" class="form-control" name="dateRetrait" ngbDatepicker  #dateRetraitDp="ngbDatepicker" formControlName="dateRetrait"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dateRetraitDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.frais" for="field_frais">Frais</label>
-                    <input type="number" class="form-control" name="frais" id="field_frais"
-                           formControlName="frais"/>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.commSysteme" for="field_commSysteme">Comm Systeme</label>
-                    <input type="number" class="form-control" name="commSysteme" id="field_commSysteme"
-                           formControlName="commSysteme"/>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.commExp" for="field_commExp">Comm Exp</label>
-                    <input type="number" class="form-control" name="commExp" id="field_commExp"
-                           formControlName="commExp"/>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.commRetireur" for="field_commRetireur">Comm Retireur</label>
-                    <input type="number" class="form-control" name="commRetireur" id="field_commRetireur"
-                           formControlName="commRetireur"/>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.taxe" for="field_taxe">Taxe</label>
-                    <input type="number" class="form-control" name="taxe" id="field_taxe"
-                           formControlName="taxe"/>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.status" for="field_status">Status</label>
-                    <input type="text" class="form-control" name="status" id="field_status"
-                           formControlName="status"/>
-                </div>
                 <div class="form-group" *ngIf="!envois">
                     <label class="form-control-label" jhiTranslate="projetApp.transaction.code" for="field_code">Code</label>
-                    <input type="text" class="form-control" name="code" id="field_code"
-                           formControlName="code"/>
+                    <input type="text" class="form-control" name="code" id="field_code" formControlName="code"/>
+                </div>
+
+                <div class="form-group" *ngIf="!envois">
+                    <label class="form-control-label"for="field_code">Numero carte d'identité recepteur</label>
+                    <input type="text" class="form-control" name="nciRecp" formControlName="nciRecp"/>
                 </div>
 
                 <div class="form-group" *ngIf="envois">
@@ -83,22 +39,8 @@
                         <option [ngValue]="clientOption.id === editForm.get('idDest').value?.id ? editForm.get('idDest').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.nom}}</option>
                     </select>
                 </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.idUserExp" for="field_idUserExp">Id User Exp</label>
-                    <select class="form-control" id="field_idUserExp" name="idUserExp" formControlName="idUserExp">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('idUserExp').value?.id ? editForm.get('idUserExp').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
-                    </select>
-                </div>
-                <div class="form-group" hidden>
-                    <label class="form-control-label" jhiTranslate="projetApp.transaction.idUserRetir" for="field_idUserRetir">Id User Retir</label>
-                    <select class="form-control" id="field_idUserRetir" name="idUserRetir" formControlName="idUserRetir">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('idUserRetir').value?.id ? editForm.get('idUserRetir').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
-                    </select>
-                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="envois">
                 <label class="form-control-label" jhiTranslate="projetApp.transaction.montant" for="field_montant">Montant</label>
                 <input type="number" class="form-control" name="montant" id="field_montant" formControlName="montant" [disabled]="envois"/>
             </div>

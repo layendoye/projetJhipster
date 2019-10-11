@@ -61,6 +61,7 @@ com/projet/jhipster/web/rest/errors/LoginAlreadyUsedException.class
 com/projet/jhipster/domain/AbstractAuditingEntity_.class
 com/projet/jhipster/security/jwt/TokenProvider.class
 com/projet/jhipster/config/LoggingConfiguration.class
+com/projet/jhipster/domain/RetraitForm.class
 com/projet/jhipster/web/rest/UserJWTController$JWTToken.class
 com/projet/jhipster/security/jwt/JWTFilter.class
 com/projet/jhipster/web/rest/ClientForwardController.class
