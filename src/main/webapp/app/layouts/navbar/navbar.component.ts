@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   swaggerEnabled: boolean;
   modalRef: NgbModalRef;
   version: string;
+  username: String;
 
   constructor(
     private loginService: LoginService,
@@ -47,6 +48,7 @@ export class NavbarComponent implements OnInit {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });
+    this.getUserconnecte();
   }
 
   changeLanguage(languageKey: string) {
@@ -78,5 +80,10 @@ export class NavbarComponent implements OnInit {
 
   getImageUrl() {
     return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
+  }
+  getUserconnecte() {
+    this.accountService.userConnecte().subscribe(rep => {
+      this.username = rep.login;
+    });
   }
 }

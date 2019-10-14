@@ -94,6 +94,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //this.getUserconnecte();
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;
@@ -129,5 +130,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+  getUserconnecte() {
+    this.accountService.userConnecte().subscribe(rep => {
+      this.idUserConnecte = 3; //rep.id;
+      this.loadAll();
+    });
   }
 }

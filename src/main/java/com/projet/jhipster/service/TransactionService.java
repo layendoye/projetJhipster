@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -74,5 +75,8 @@ public class TransactionService {
     }
     public Optional<Transaction> findTransactionByCode(String code){
         return transactionRepository.findTransactionByCode(code);
+    }
+    public Page<Transaction> findMesTransaction(Pageable pageable){
+        return transactionRepository.findMesTransaction(pageable);
     }
 }

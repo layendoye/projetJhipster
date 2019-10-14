@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { Account } from 'app/core/user/account.model';
+import { User } from 'app/core/user/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -14,7 +15,9 @@ export class AccountService {
   private authenticationState = new Subject<any>();
 
   constructor(private languageService: JhiLanguageService, private sessionStorage: SessionStorageService, private http: HttpClient) {}
-
+  userConnecte(): Observable<User> {
+    return this.http.get<User>(SERVER_API_URL + 'api/userConnecte');
+  }
   fetch(): Observable<HttpResponse<Account>> {
     return this.http.get<Account>(SERVER_API_URL + 'api/account', { observe: 'response' });
   }

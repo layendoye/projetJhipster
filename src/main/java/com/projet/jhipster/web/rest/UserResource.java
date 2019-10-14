@@ -187,4 +187,9 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
     }
+    @GetMapping("/userConnecte")
+    public User getUserConnecte() {
+        return userService.getUserWithAuthorities().get();
+    }
+
 }

@@ -40,6 +40,9 @@ public class ClientResourceIT {
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
+
     @Autowired
     private ClientRepository clientRepository;
 
@@ -86,7 +89,8 @@ public class ClientResourceIT {
     public static Client createEntity(EntityManager em) {
         Client client = new Client()
             .nci(DEFAULT_NCI)
-            .nom(DEFAULT_NOM);
+            .nom(DEFAULT_NOM)
+            .telephone(DEFAULT_TELEPHONE);
         return client;
     }
     /**
@@ -98,7 +102,8 @@ public class ClientResourceIT {
     public static Client createUpdatedEntity(EntityManager em) {
         Client client = new Client()
             .nci(UPDATED_NCI)
-            .nom(UPDATED_NOM);
+            .nom(UPDATED_NOM)
+            .telephone(UPDATED_TELEPHONE);
         return client;
     }
 
@@ -124,6 +129,7 @@ public class ClientResourceIT {
         Client testClient = clientList.get(clientList.size() - 1);
         assertThat(testClient.getNci()).isEqualTo(DEFAULT_NCI);
         assertThat(testClient.getNom()).isEqualTo(DEFAULT_NOM);
+        assertThat(testClient.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
     }
 
     @Test
@@ -158,7 +164,8 @@ public class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
             .andExpect(jsonPath("$.[*].nci").value(hasItem(DEFAULT_NCI.toString())))
-            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())));
+            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE.toString())));
     }
     
     @Test
@@ -173,7 +180,8 @@ public class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
             .andExpect(jsonPath("$.nci").value(DEFAULT_NCI.toString()))
-            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()));
+            .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
+            .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE.toString()));
     }
 
     @Test
@@ -198,7 +206,8 @@ public class ClientResourceIT {
         em.detach(updatedClient);
         updatedClient
             .nci(UPDATED_NCI)
-            .nom(UPDATED_NOM);
+            .nom(UPDATED_NOM)
+            .telephone(UPDATED_TELEPHONE);
 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -211,6 +220,7 @@ public class ClientResourceIT {
         Client testClient = clientList.get(clientList.size() - 1);
         assertThat(testClient.getNci()).isEqualTo(UPDATED_NCI);
         assertThat(testClient.getNom()).isEqualTo(UPDATED_NOM);
+        assertThat(testClient.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
     }
 
     @Test

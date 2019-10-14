@@ -17,7 +17,8 @@
         "title": "Client"
       },
       "nci": "Nci",
-      "nom": "Nom"
+      "nom": "Nom",
+      "telephone": "Telephone"
     }
   }
 }

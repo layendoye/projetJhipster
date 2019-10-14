@@ -20,6 +20,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="nci"><span jhiTranslate="projetApp.client.nci">Nci</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="nom"><span jhiTranslate="projetApp.client.nom">Nom</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telephone"><span jhiTranslate="projetApp.client.telephone">Telephone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -28,6 +29,7 @@
                 <td><a [routerLink]="['/client', client.id, 'view' ]">{{client.id}}</a></td>
                 <td>{{client.nci}}</td>
                 <td>{{client.nom}}</td>
+                <td>{{client.telephone}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

@@ -1,5 +1,7 @@
 package com.projet.jhipster.repository;
 import com.projet.jhipster.domain.Transaction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +22,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findByIdUserRetirIsCurrentUser();
 
     @Query("select transaction from Transaction transaction where transaction.idUserRetir.login = ?#{principal.username} OR transaction.idUserExp.login = ?#{principal.username}")
-    List<Transaction> findMesTransaction();
+    Page<Transaction> findMesTransaction(Pageable pageable);
 
     Optional<Transaction> findTransactionByCode(String code);
 

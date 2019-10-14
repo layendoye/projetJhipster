@@ -1,0 +1,40 @@
+<aside class="main-sidebar" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+    <section class="sidebar">
+        <p>MENU PRINCIPAL</p>
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="active treeview">
+                <a href="#">
+                    <i class="far fa-money-bill-alt"></i> <span> Transactions</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li routerLinkActive="active">
+                        <a routerLink="client"><i class="fas fa-donate"></i>Client</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="transaction"><i class="fas fa-hand-holding-usd"></i>Transactions</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="far fa-money-bill-alt"></i> <span> Parametre</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li routerLinkActive="active">
+                        <a routerLink="account/settings"><i class="fas fa-donate"></i>Mon compte</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="account/register"><i class="fas fa-donate"></i>Inscription</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</aside>

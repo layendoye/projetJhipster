@@ -28,6 +28,9 @@ public class Client implements Serializable {
     @Column(name = "nom")
     private String nom;
 
+    @Column(name = "telephone")
+    private String telephone;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -62,6 +65,19 @@ public class Client implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public Client telephone(String telephone) {
+        this.telephone = telephone;
+        return this;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -86,6 +102,7 @@ public class Client implements Serializable {
             "id=" + getId() +
             ", nci='" + getNci() + "'" +
             ", nom='" + getNom() + "'" +
+            ", telephone='" + getTelephone() + "'" +
             "}";
     }
 }

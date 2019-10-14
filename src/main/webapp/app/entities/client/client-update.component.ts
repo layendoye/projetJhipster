@@ -18,7 +18,8 @@ export class ClientUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     nci: [null, []],
-    nom: []
+    nom: [],
+    telephone: []
   });
 
   constructor(protected clientService: ClientService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -34,7 +35,8 @@ export class ClientUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: client.id,
       nci: client.nci,
-      nom: client.nom
+      nom: client.nom,
+      telephone: client.telephone
     });
   }
 
@@ -57,7 +59,8 @@ export class ClientUpdateComponent implements OnInit {
       ...new Client(),
       id: this.editForm.get(['id']).value,
       nci: this.editForm.get(['nci']).value,
-      nom: this.editForm.get(['nom']).value
+      nom: this.editForm.get(['nom']).value,
+      telephone: this.editForm.get(['telephone']).value
     };
   }
 
